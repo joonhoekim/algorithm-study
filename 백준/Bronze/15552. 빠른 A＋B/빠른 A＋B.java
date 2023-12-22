@@ -17,7 +17,7 @@ public class Main {
     for (int i = 0; i < numberOfCase; i++) {
       stringTokenizer = new StringTokenizer(bufferedReader.readLine(), " ");
       stringBuilder.append(Integer.parseInt(stringTokenizer.nextToken()) + Integer.parseInt(
-          stringTokenizer.nextToken()) + "\n");
+          stringTokenizer.nextToken())).append("\n");
     }
 
     System.out.print(stringBuilder);
