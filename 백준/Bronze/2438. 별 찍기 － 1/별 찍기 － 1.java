@@ -4,8 +4,8 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-  public static final String NEW_LINE = "\n";
-  public static final String STAR = "*";
+  static final String NEW_LINE = "\n";
+  static final String STAR = "*";
 
   public static void main(String[] args) throws IOException {
 
