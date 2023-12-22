@@ -7,6 +7,7 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
 
+    final String NEW_LINE = "\n";
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     int numberOfCase = Integer.parseInt(bufferedReader.readLine()) + 1;
@@ -19,8 +20,8 @@ public class Main {
 
       int a = Integer.parseInt(stringTokenizer.nextToken());
       int b = Integer.parseInt(stringTokenizer.nextToken());
-      String c = "Case #" + i + ": " + a + " + " + b + " = " + (a + b) + "\n";
-      stringBuilder.append(c);
+      stringBuilder.append("Case #").append(i).append(": ").append(a).append(" + ").append(b)
+          .append(" = ").append(a + b).append(NEW_LINE);
 
 
     }
