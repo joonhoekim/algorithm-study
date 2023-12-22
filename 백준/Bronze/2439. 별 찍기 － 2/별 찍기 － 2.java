@@ -17,12 +17,8 @@ public class Main {
     int T = Integer.parseInt(bufferedReader.readLine());
 
     for (int i = 0; i < T; ++i) {
-      for (int j = i + 1; j < T; ++j) {
-        stringBuilder.append(BLANK);
-      }
-      for (int k = T - i; k < T + 1; ++k) {
-        stringBuilder.append(STAR);
-      }
+      stringBuilder.append(BLANK.repeat(Math.max(0, T - (i + 1))));
+      stringBuilder.append(STAR.repeat(Math.max(0, T + 1 - (T - i))));
       stringBuilder.append(NEW_LINE);
     }
 
