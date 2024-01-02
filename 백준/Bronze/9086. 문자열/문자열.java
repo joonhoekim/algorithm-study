@@ -5,13 +5,14 @@ public class Main {
 
   public static void main(String... args) {
     Scanner sc = new Scanner(System.in);
+    StringBuilder sb = new StringBuilder();
 
-    int N  = Integer.parseInt(sc.nextLine());
+    int N  = sc.nextInt();
     for (int i = 0; i < N; i++) {
-      String input = sc.nextLine();
-      String first = String.valueOf(input.charAt(0));
-      String last = String.valueOf(input.charAt(input.length()-1));
-      System.out.println(first+last);
+      String input = sc.next();
+      sb.append(input.charAt(0)).append(input.charAt(input.length()-1));
+      System.out.println(String.valueOf(sb));
+      sb.delete(0,2);
     }
   }
 }
