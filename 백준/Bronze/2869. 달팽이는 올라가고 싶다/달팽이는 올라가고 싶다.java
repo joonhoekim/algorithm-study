@@ -17,7 +17,7 @@ public class Main {
         int interval = A-B;
 
         // interval*X + A >= V 를 만족하는 최소의 X가 답이 된다.
-        // 이항하면 X >= (V-A)/interval
+        // 이항하면 X >= (V-A)/interval, 단 날짜 단위이고 첫날에 바로 오르기를 성공하면 1일째에 성공한 것이니 1을 더해준다.
 
         int minDay = (int) Math.ceil( ((double)V-A)/interval) + 1;
 
