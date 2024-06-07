@@ -16,27 +16,14 @@ public class Main {
     }
 
     private static int getGcd(int a, int b) {
-        int max = Math.max(a, b);
-        int min = Math.min(a, b);
-
-        for (int divisor = min; divisor > 1; divisor--) {
-            if (max % divisor == 0 && min % divisor == 0)
-                return divisor;
+        if (b == 0) {
+            return a;
         }
-
-        return 1;
+        return getGcd(b, a % b);
     }
 
     private static int getLcm(int a, int b) {
-        int max = Math.max(a, b);
-        int min = Math.min(a, b);
-
-        for (int multiple = max; multiple < max * min; multiple++) {
-            if (multiple % min == 0 && multiple % max == 0) {
-                return multiple;
-            }
-        }
-        return max * min;
+        return (a * b) / getGcd(a, b);
     }
 
 
