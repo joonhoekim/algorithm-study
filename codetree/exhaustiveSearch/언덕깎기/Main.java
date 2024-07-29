@@ -15,58 +15,47 @@ public class Main {
     int n = sc.nextInt();
     int[] heightArr = new int[n];
 
+    int minH = Integer.MAX_VALUE;
+    int maxH = Integer.MIN_VALUE;
+
     for (int i = 0; i < n; i++) {
       heightArr[i] = sc.nextInt();
+      minH = Math.min(minH, heightArr[i]);
+      maxH = Math.max(maxH, heightArr[i]);
     }
 
-    // Greedy 하게 풀면 될 듯..
-    // 일단 만족하는지 보고, 최하층들을 올릴 것인지, 최상층들을 내릴 것인지 더 저렴한 것으로 선택하기
-    // 단 한 라인씩 처리할 것. 올리기+내리기 둘 다 필요할 것임
+    //완전탐색으로 풀자
+    int globalMinSum = Integer.MAX_VALUE;
 
-    int minHeight = Integer.MAX_VALUE;
-    int maxHeight = Integer.MIN_VALUE;
-    int countMin = 0;
-    int countMax = 0;
-    int[] workload = new int[n];
+    //아래를 올리는 경우
+    for (int bottom = minH; bottom <= maxH - MAX_DIFF; bottom++) {
+      //위를 내리는 경우
+      for (int top = maxH; top >= minH + MAX_DIFF; top--) {
 
-    do {
-      //최고, 최저 높이 검사
-      for (int i = 0; i < heightArr.length; i++) {
-        minHeight = Math.min(minHeight, heightArr[i]);
-        maxHeight = Math.max(maxHeight, heightArr[i]);
-      }
-
-      for (int i = 0; i < heightArr.length; i++) {
-        if (heightArr[i] == minHeight) {
-          countMin++;
+        //일단 MAX_DIFF 안으로 들어왔는지 확인하고, 아니면 이번 반복은 그냥 넘김
+        if (top - bottom > MAX_DIFF) {
+          continue;
         }
-        if (heightArr[i] == maxHeight) {
-          countMax++;
-        }
+
+        //bottom, top에 넘어가는 언덕들로 비용을 검사하고, 글로벌 최소값을 갱신함
+        globalMinSum = Math.min(globalMinSum, getTotalExpense(heightArr, top, bottom));
+
       }
+    }
 
-      //countMin, countMax 비교해서 올리기/내리기 선택
-
-      //아... 이렇게는 풀수 없구나
-      //가격이 비선형적으로 증가하므로, 완전탐색을 돌려야 함...
-      //지금 방법으로는, 1개 언덕만 엄청 높게 튀어나와있다고 가정할 때
-      //오히려 다른 언덕들을 높여주는게 비용상 더 이득이 될 수 있음
-      //결국 MaxDiff 안으로 들어오게 만드는 결과를 가정해놓고, 올리기/내리기 완전탐색해보고 비용 최소값 구해야함
-
-    } while (maxHeight - minHeight > MAX_DIFF);
-
-
+    System.out.println(globalMinSum);
   }
 
-  static boolean isInMaxDiff(int[] heightArr, int diff) {
-    int minHeight = Integer.MAX_VALUE;
-    int maxHeight = Integer.MIN_VALUE;
-
-    for (int i = 0; i < heightArr.length; i++) {
-      minHeight = Math.min(minHeight, heightArr[i]);
-      maxHeight = Math.max(maxHeight, heightArr[i]);
+  private static int getTotalExpense(int[] heightArr, int top, int bottom) {
+    int expenseSum = 0;
+    for (int height : heightArr) {
+      if (height > top) {
+        expenseSum += (int) Math.pow(height - top, 2);
+      } else if (bottom > height) {
+        expenseSum += (int) Math.pow(bottom - height, 2);
+      }
     }
 
-    return maxHeight - minHeight <= diff;
+    return expenseSum;
   }
 }
