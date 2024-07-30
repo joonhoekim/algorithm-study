@@ -2,7 +2,10 @@ package exhaustiveSearch.구간잘나누기;
 
 import java.util.Scanner;
 
-public class Main {
+public class BinaryTree {
+
+  // 주어진 최대합으로 배열을 m개 이하의 그룹으로 나눌수 있는지 확인
+  // 코드트리 해설도 같은 아이디어로 풀고 있음. (이진트리를 도입하지 않아도 됨)
 
   static int n, m;
   static int[] arr;
