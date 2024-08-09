@@ -37,19 +37,20 @@ public class 완전탐색 {
             }
 
             //로컬 최솟값 구해봄
-            if(list.size() != 1) {
-            int localMinDiff = Integer.MAX_VALUE;
-            for (int i = 0; i < list.size() - 1; i++) {
-                int localDiff = list.get(i + 1) - list.get(i);
-                localMinDiff = Math.min(localMinDiff,
-                                        localDiff);
+            if (list.size() != 1) {
+                int localMinDiff = Integer.MAX_VALUE;
+                for (int i = 0; i < list.size() - 1; i++) {
+                    int localDiff = list.get(i + 1) - list.get(i);
+                    localMinDiff = Math.min(localMinDiff,
+                            localDiff);
+                }
+
+                globalMaxDiffLeast = Math.max(globalMaxDiffLeast,
+                        localMinDiff);
             }
 
-            globalMaxDiffLeast = Math.max(globalMaxDiffLeast,
-                                          localMinDiff);
+            //아직 해결이 안됐는데 뭐가 문제인지 파악이 안됨.
+            System.out.println(globalMaxDiffLeast);
         }
-
-        //아직 해결이 안됐는데 뭐가 문제인지 파악이 안됨.
-        System.out.println(globalMaxDiffLeast);
     }
 }
