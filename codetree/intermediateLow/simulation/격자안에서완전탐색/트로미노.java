@@ -43,10 +43,29 @@ public class 트로미노 {
     }
 
     int globalmax = 0;
+    //r, c 는 블럭의 시작점 (왼쪽 위)이다.
+    for (int r = 0; r < n - 1; r++) {
+      for (int c = 0; c < m - 1; c++) {
 
-    //ㄴ자로 생긴 블락은 총 4가지 모양을 만들 수 있고, 모두 2*2 안에서 처리 가능하다.
-      <HEAD>
+        //i 에 따라 ㄴ 자 블럭 회전을 구현한다.
 
+        for (int i = 0; i < 4; i++) {
+          int[] blockSum = new int[4];
+          blockSum[0] += board[r][c];
+          blockSum[1] += board[r + 1][c];
+          blockSum[2] += board[r][c + 1];
+          blockSum[3] += board[r + 1][c + 1];
+          int localSum = 0;
+          for (int j = 0; j < 4; j++) {
+            if (i == j) {
+              continue;
+            }
+            localSum += blockSum[j];
+          }
+          globalmax = Math.max(localSum, globalmax);
+        }
+      }
+    }
 
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < m; j++) {
