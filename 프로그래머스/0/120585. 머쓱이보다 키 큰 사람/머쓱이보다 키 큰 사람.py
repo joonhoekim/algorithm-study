@@ -1,3 +1,2 @@
 def solution(array, height):
-    answer = len([x for x in array if x > height])
-    return answer
+    return sum([x > height for x in array])
