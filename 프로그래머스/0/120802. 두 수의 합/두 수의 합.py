@@ -1,0 +1,1 @@
+solution=lambda *여러개들어와:sum(여러개들어와)
