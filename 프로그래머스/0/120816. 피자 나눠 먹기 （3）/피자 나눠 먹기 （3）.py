@@ -1,6 +1,3 @@
 def solution(slice, n):
-    quotient, dividend = divmod(n, slice)
-    if dividend==0:
-        return quotient
-    else:
-        return quotient+1
+    # 1을 뺀 상태에서 나누고 1을 더하면 올림의 효과와 동일하다
+    return ((n - 1) // slice) + 1
