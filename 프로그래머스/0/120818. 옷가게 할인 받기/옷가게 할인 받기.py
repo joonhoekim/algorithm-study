@@ -1,14 +1,11 @@
 def solution(price):
-    discount_ratio = 0
-    if price >= 500_000:
-        discount_ratio = 0.2
-    elif price >= 300_000:
-        discount_ratio = 0.1
-    elif price >= 100_000:
-        discount_ratio = 0.05
-    elif price >= 0:
-        discount_ratio = 0
-    else:
-        return -1
+    discount_rates = {
+        500000: 0.8, 
+        300000: 0.9, 
+        100000: 0.95, 
+        0: 1
+    }
     
-    return int(price*(1-discount_ratio))
+    for discount_price, discount_rate in discount_rates.items():
+        if price >= discount_price:
+            return int(price * discount_rate)
