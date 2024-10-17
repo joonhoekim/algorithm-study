@@ -1,6 +1,3 @@
 def solution(my_string):
-    answer = []
-    for ch in my_string:
-        if ch not in 'aeiou':
-            answer.append(ch)
-    return ''.join(answer)
+    
+    return ''.join(ch for ch in my_string if not ch in 'aeiou')
