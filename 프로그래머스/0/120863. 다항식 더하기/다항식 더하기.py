@@ -1,3 +1,1 @@
-def solution(polynomial):
-    answer = ''
-    return answer
+solution=lambda p:((lambda c,n:('x'if c==1else f'{c}x')+(f' + {n}'if n else'')if c else str(n or'0'))(sum(1 if i=='x'else int(i[:-1])for i in p.split(' + ')if'x'in i),sum(map(int,(i for i in p.split(' + ')if'x'not in i)),0)))
